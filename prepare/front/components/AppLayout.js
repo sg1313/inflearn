@@ -3,7 +3,7 @@ import React from "react";
 import propTypes from "prop-types";
 import Link from "next/link";
 import { Input, Menu, Row, Col } from "antd";
-import { useState } from "react";
+import { useSelector } from "react-redux";
 
 import UserProfile from "./UserProfile";
 import LoginForm from "./LoginForm";
@@ -14,7 +14,12 @@ const SearchInput = styled(Input.Search)`
 `;
 
 const AppLayout = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // redux라는 중앙 관리소가 있기 때문에 컴포넌트별로 isLoggedIn 관리 안해도 된다.
+  // 기존의 useState는 지우고 아래와 같이 사용한다.
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  // 또는 유저 자체를 받아와서 user 안에서 isloggedIn을 구조분해하는 방식으로 쓸 수도 있다
+  // const {isLoggedIn} = useSelector((state) => state.user);
+
   return (
     <div>
       <Menu mode="horizontal">
@@ -39,11 +44,7 @@ const AppLayout = ({ children }) => {
       </Menu>
       <Row gutter={8}>
         <Col xs={24} md={6}>
-          {isLoggedIn ? (
-            <UserProfile setIsLoggedIn={setIsLoggedIn} />
-          ) : (
-            <LoginForm setIsLoggedIn={setIsLoggedIn} />
-          )}
+          {isLoggedIn ? <UserProfile /> : <LoginForm />}
         </Col>
         <Col xs={24} md={12}>
           {children}

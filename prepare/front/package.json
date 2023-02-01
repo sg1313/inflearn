@@ -10,7 +10,7 @@
   "author": "seulgi Lee",
   "license": "ISC",
   "dependencies": {
-    "@ant-design/icons": "^5.0.0",
+    "@ant-design/icons": "^5.0.1",
     "antd": "^4.24.7",
     "next": "^9.5.5",
     "next-redux-wrapper": "^6.0.2",

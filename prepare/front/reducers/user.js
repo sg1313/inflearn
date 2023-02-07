@@ -5,14 +5,14 @@ export const initialState = {
   loginData: {},
 };
 
-export const loginAction = (data) => {
+export const loginRequestAction = (data) => {
   return {
     type: "LOG_IN",
     data,
   };
 };
 
-export const logoutAction = () => {
+export const logoutRequestAction = () => {
   return {
     type: "LOG_OUT",
   };

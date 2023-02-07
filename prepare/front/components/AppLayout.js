@@ -16,9 +16,9 @@ const SearchInput = styled(Input.Search)`
 const AppLayout = ({ children }) => {
   // redux라는 중앙 관리소가 있기 때문에 컴포넌트별로 isLoggedIn 관리 안해도 된다.
   // 기존의 useState는 지우고 아래와 같이 사용한다.
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  // const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   // 또는 유저 자체를 받아와서 user 안에서 isloggedIn을 구조분해하는 방식으로 쓸 수도 있다
-  // const {isLoggedIn} = useSelector((state) => state.user);
+  const { me } = useSelector((state) => state.user);
 
   return (
     <div>
@@ -44,7 +44,7 @@ const AppLayout = ({ children }) => {
       </Menu>
       <Row gutter={8}>
         <Col xs={24} md={6}>
-          {isLoggedIn ? <UserProfile /> : <LoginForm />}
+          {me ? <UserProfile /> : <LoginForm />}
         </Col>
         <Col xs={24} md={12}>
           {children}
